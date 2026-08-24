@@ -1,3 +1,7 @@
+const _ = require("lodash");
+
+const PRIORITIES = ["low", "medium", "high"];
+
 let tasks = [];
 let nextId = 1;
 
@@ -32,9 +36,28 @@ function completeTask(id) {
   return task;
 }
 
+function updateTask(id, updates) {
+  const task = getTask(id);
+  if (updates.priority) {
+    if (PRIORITIES.includes(updates.priority)) {
+      _.merge(task, { priority: updates.priority });
+    } else {
+      throw new Error("invalid priority");
+    }
+  }
+  return task;
+}
+
 function _resetForTests() {
   tasks = [];
   nextId = 1;
 }
 
-module.exports = { createTask, getTask, listTasks, completeTask, _resetForTests };
+module.exports = {
+  createTask,
+  getTask,
+  listTasks,
+  completeTask,
+  updateTask,
+  _resetForTests,
+};

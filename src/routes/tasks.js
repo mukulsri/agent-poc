@@ -22,6 +22,15 @@ router.get("/:id", (req, res) => {
   res.json(task);
 });
 
+router.patch("/:id", (req, res) => {
+  try {
+    const task = taskService.updateTask(req.params.id, req.body || {});
+    res.json(task);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 router.post("/:id/complete", (req, res) => {
   const task = taskService.completeTask(req.params.id);
   if (!task) return res.status(404).json({ error: "not found" });

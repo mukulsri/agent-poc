@@ -17,6 +17,14 @@ describe("createTask", () => {
   });
 });
 
+describe("updateTask", () => {
+  it("sets priority on an existing task", () => {
+    const task = taskService.createTask({ title: "Fix bug" });
+    const updated = taskService.updateTask(task.id, { priority: "high" });
+    expect(updated.priority).toBe("high");
+  });
+});
+
 describe("completeTask", () => {
   it("marks an existing task as done", () => {
     const task = taskService.createTask({ title: "Ship feature" });
