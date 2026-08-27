@@ -17,6 +17,15 @@ describe("createTask", () => {
   });
 });
 
+describe("listTasksSortedByTitle", () => {
+  it("returns tasks sorted alphabetically by title", () => {
+    taskService.createTask({ title: "Ship feature" });
+    taskService.createTask({ title: "Fix bug" });
+    const sorted = taskService.listTasksSortedByTitle();
+    expect(sorted.map((t) => t.title)).toEqual(["Fix bug", "Ship feature"]);
+  });
+});
+
 describe("completeTask", () => {
   it("marks an existing task as done", () => {
     const task = taskService.createTask({ title: "Ship feature" });

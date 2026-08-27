@@ -7,6 +7,10 @@ router.get("/", (req, res) => {
   res.json(taskService.listTasks());
 });
 
+router.get("/sorted", (req, res) => {
+  res.json(taskService.listTasksSortedByTitle());
+});
+
 router.post("/", (req, res) => {
   try {
     const task = taskService.createTask(req.body || {});

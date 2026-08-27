@@ -24,6 +24,10 @@ function listTasks() {
   return tasks;
 }
 
+function listTasksSortedByTitle() {
+  return [...tasks].sort((a, b) => a.title.localeCompare(b.title));
+}
+
 function completeTask(id) {
   const task = getTask(id);
   if (!task) return null;
@@ -37,4 +41,11 @@ function _resetForTests() {
   nextId = 1;
 }
 
-module.exports = { createTask, getTask, listTasks, completeTask, _resetForTests };
+module.exports = {
+  createTask,
+  getTask,
+  listTasks,
+  listTasksSortedByTitle,
+  completeTask,
+  _resetForTests,
+};
