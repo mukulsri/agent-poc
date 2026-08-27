@@ -25,7 +25,7 @@ function listTasks() {
 }
 
 function listTasksSortedByTitle() {
-  return tasks.toSorted((a, b) => a.title.localeCompare(b.title));
+  return [...tasks].sort((a, b) => a.title.localeCompare(b.title));
 }
 
 function completeTask(id) {
